@@ -1,15 +1,11 @@
-package edu.plohoy.spitter.impl.business.service;
+package edu.plohoy.spitter.impl.service;
 
 import edu.plohoy.spitter.api.dao.SpitterDao;
 import edu.plohoy.spitter.api.domain.Spitter;
-import edu.plohoy.spitter.api.business.service.SpitterService;
+import edu.plohoy.spitter.api.service.SpitterService;
 
 public class SpitterServiceImpl implements SpitterService {
     private SpitterDao dao;
-
-    public void setDao(SpitterDao dao) {
-        this.dao = dao;
-    }
 
     public void addSpitter(Spitter spitter) {
         dao.addSpitter(spitter);
@@ -25,5 +21,9 @@ public class SpitterServiceImpl implements SpitterService {
 
     public void deleteSpitter(long id) {
         dao.deleteSpitter(id);
+    }
+
+    public void setDao(SpitterDao dao) {
+        this.dao = dao;
     }
 }

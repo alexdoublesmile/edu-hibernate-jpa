@@ -1,7 +1,7 @@
 package edu.plohoy.spitter.api.business;
 
-import edu.plohoy.spitter.api.business.service.SpitterService;
 import edu.plohoy.spitter.api.domain.Spitter;
+import edu.plohoy.spitter.api.service.SpitterService;
 
 public class ServiceFacade {
     private SpitterService spitterService;

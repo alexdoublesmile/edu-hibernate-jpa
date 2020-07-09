@@ -1,4 +1,4 @@
-package edu.plohoy.spitter.api.business.service;
+package edu.plohoy.spitter.api.service;
 
 import edu.plohoy.spitter.api.domain.Spitter;
 

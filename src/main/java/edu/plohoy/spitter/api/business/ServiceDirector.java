@@ -1,27 +1,30 @@
 package edu.plohoy.spitter.api.business;
 
-import edu.plohoy.spitter.impl.business.ServiceBuilderImpl;
-
 public class ServiceDirector {
 
-    private static ServiceDirector instance;
+//    private static ServiceDirector instance;
+    private ServiceBuilder builder;
 
     private ServiceDirector(){}
 
     public ServiceFacade createServiceFacade() {
-        ServiceBuilder builder = new ServiceBuilderImpl();
+//        builder = new ServiceBuilderImpl();
 
-        builder.createServiceFacade();
+//        builder.createServiceFacade();
         builder.createSpitterService();
 
         return builder.getServiceFacade();
     }
 
-    public static synchronized ServiceDirector getInstance() {
-        if (instance == null) {
-            instance = new ServiceDirector();
-        }
-        return instance;
+//    public static synchronized ServiceDirector getInstance() {
+//        if (instance == null) {
+//            instance = new ServiceDirector();
+//        }
+//        return instance;
+//    }
+
+    public void setBuilder(ServiceBuilder builder) {
+        this.builder = builder;
     }
 
 }
