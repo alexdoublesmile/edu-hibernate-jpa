@@ -9,11 +9,14 @@
     <version>1.0</version>
 
     <properties>
+        <postgres.ver>42.2.8</postgres.ver>
         <spring.ver>5.2.1.RELEASE</spring.ver>
         <commons.io.ver>2.6</commons.io.ver>
+        <commons.dbcp.ver>1.4</commons.dbcp.ver>
         <aspectj.ver>1.9.4</aspectj.ver>
         <javaee.ver>7.0</javaee.ver>
         <junit.ver>4.12</junit.ver>
+        <mockito.ver>2.2.12</mockito.ver>
     </properties>
     <build>
         <plugins>
@@ -29,6 +32,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.ver}</version>
+        </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -46,27 +55,39 @@
             <version>${spring.ver}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.aspectj</groupId>-->
-            <!--<artifactId>aspectjweaver</artifactId>-->
-            <!--<version>${aspectj.ver}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.aspectj</groupId>-->
-            <!--<artifactId>aspectjrt</artifactId>-->
-            <!--<version>${aspectj.ver}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.ver}</version>
+        </dependency>
 
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons.io.ver}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons.dbcp.ver}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.ver}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.ver}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

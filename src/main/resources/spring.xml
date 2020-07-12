@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
-    <bean id="dao" class="edu.plohoy.spitter.impl.dao.SpitterDaoImpl"/>
+    <context:component-scan base-package="edu.plohoy.spitter"/>
+    <bean id="dao" class="edu.plohoy.spitter.impl.dao.SpitterDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
     <bean id="service" class="edu.plohoy.spitter.impl.service.SpitterServiceImpl">
         <property name="dao" ref="dao"/>
     </bean>
 
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost/spitter"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="44881212"/>
+        <property name="initialSize" value="5"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource" />
+    </bean>
 </beans>

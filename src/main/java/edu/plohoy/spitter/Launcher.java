@@ -16,11 +16,20 @@ public class Launcher {
         SpitterService service = (SpitterService) ctx.getBean("service");
 
 
-        Spitter firstSpitter = new Spitter("First Spitty");
+        Spitter firstSpitter = new Spitter("New Spitty", "password", "New Spitter Smith", "newSpit@gmail.com");
         service.addSpitter(firstSpitter);
-        service.getSpitterById(0);
-        service.updateSpitter(firstSpitter, 5);
-        service.deleteSpitter(5);
+        System.out.println(service.getSpitterById(10));
+        service.updateSpitter(firstSpitter, 10);
+        System.out.println(service.getSpitterById(10));
+        service.deleteSpitter(10);
+        if (service.getSpitterById(10).getId() == 0) {
+            System.out.println("There is no any row with this number!");
+        } else {
+            System.out.println(service.getSpitterById(10));
+        }
+
+//        service.updateSpitter(firstSpitter, 5);
+//        service.deleteSpitter(5);
 
     }
 
