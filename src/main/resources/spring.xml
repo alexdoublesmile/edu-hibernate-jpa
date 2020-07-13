@@ -15,9 +15,14 @@
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
     <context:component-scan base-package="edu.plohoy.spitter"/>
-    <bean id="dao" class="edu.plohoy.spitter.impl.dao.SpitterDaoImpl">
+
+    <bean id="dao" class="edu.plohoy.spitter.impl.dao.JDBCSpitterDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+
+    <!--<bean id="dao" class="edu.plohoy.spitter.impl.dao.HibernateSpitterDaoImpl"/>-->
+
+    <!--<bean id="dao" class="edu.plohoy.spitter.impl.dao.JPASpitterDaoImpl"/>-->
 
     <bean id="service" class="edu.plohoy.spitter.impl.service.SpitterServiceImpl">
         <property name="dao" ref="dao"/>
@@ -36,4 +41,33 @@
           class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource" />
     </bean>
+
+    <!--<bean name="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="packagesToScan" value="edu.plohoy.spitter"/>-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
+                <!--<prop key="dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean name="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">-->
+        <!--<property name="persistenceUnitName" value="spitterPU"/>-->
+    <!--</bean>-->
+
+    <!--<bean name="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>-->
+    <!--</bean>-->
+
+    <!--<bean name="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">-->
+        <!--<property name="database" value="POSTGRESQL"/>-->
+        <!--<property name="showSql" value="true"/>-->
+        <!--<property name="generateDdl" value="false"/>-->
+        <!--<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL10Dialect"/>-->
+    <!--</bean>-->
+
+    <!--<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>-->
+    <!--<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>-->
 </beans>

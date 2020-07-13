@@ -5,6 +5,7 @@ import edu.plohoy.spitter.api.business.ServiceFacade;
 import edu.plohoy.spitter.api.domain.Spitter;
 import edu.plohoy.spitter.api.service.SpitterService;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Launcher {
@@ -16,17 +17,13 @@ public class Launcher {
         SpitterService service = (SpitterService) ctx.getBean("service");
 
 
-        Spitter firstSpitter = new Spitter("New Spitty", "password", "New Spitter Smith", "newSpit@gmail.com");
+        Spitter firstSpitter = new Spitter("Bad Spitty", "password", "Dr. Spitter Smith", "spit@gmail.com");
         service.addSpitter(firstSpitter);
-        System.out.println(service.getSpitterById(10));
-        service.updateSpitter(firstSpitter, 10);
-        System.out.println(service.getSpitterById(10));
-        service.deleteSpitter(10);
-        if (service.getSpitterById(10).getId() == 0) {
-            System.out.println("There is no any row with this number!");
-        } else {
-            System.out.println(service.getSpitterById(10));
-        }
+        Spitter spitter = service.getSpitterById(7);
+        System.out.println(spitter);
+        service.updateSpitter(firstSpitter, 7);
+        System.out.println(service.getSpitterById(7));
+        service.deleteSpitter(7);
 
 //        service.updateSpitter(firstSpitter, 5);
 //        service.deleteSpitter(5);

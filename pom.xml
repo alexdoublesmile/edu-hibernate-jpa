@@ -10,6 +10,7 @@
 
     <properties>
         <postgres.ver>42.2.8</postgres.ver>
+        <hibernate.ver>5.4.18.Final</hibernate.ver>
         <spring.ver>5.2.1.RELEASE</spring.ver>
         <commons.io.ver>2.6</commons.io.ver>
         <commons.dbcp.ver>1.4</commons.dbcp.ver>
@@ -37,6 +38,13 @@
             <artifactId>postgresql</artifactId>
             <version>${postgres.ver}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.ver}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>javax</groupId>

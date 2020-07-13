@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="1.0">
+    <persistence-unit name="spitterPU">
+        <class>edu.plohoy.spitter.api.domain.Spitter</class>
+        <class>edu.plohoy.spitter.api.domain.Spittle</class>
+        <properties>
+            <property name="jdbc.driver"
+                      value="org.postgresql.Driver" />
+            <property name="jdbc.url"
+                      value="jdbc:postgresql://localhost/spitter" />
+            <property name="jdbc.user"
+                      value="postgres" />
+            <property name="jdbc.password"
+                      value="44881212" />
+        </properties>
+    </persistence-unit>
+</persistence>

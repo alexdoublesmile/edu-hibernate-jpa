@@ -1,7 +1,7 @@
 package edu.plohoy.spitter.api.domain;
 
+import javax.persistence.Entity;
 import java.util.Objects;
-
 public class Spitter {
     private long id;
     private String userName;
