@@ -4,11 +4,12 @@ import edu.plohoy.spitter.api.dao.SpitterDao;
 import edu.plohoy.spitter.api.domain.Spitter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 public class HibernateSpitterDaoImpl implements SpitterDao {
     private SessionFactory sessionFactory;
+
     public HibernateSpitterDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -35,5 +36,10 @@ public class HibernateSpitterDaoImpl implements SpitterDao {
     @Override
     public void deleteSpitter(long id) {
         currentSession().delete(id);
+    }
+
+    @Override
+    public List<Spitter> getAllSpitters() {
+        return null;
     }
 }

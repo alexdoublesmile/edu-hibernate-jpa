@@ -2,14 +2,10 @@ package edu.plohoy.spitter.impl.dao;
 
 import edu.plohoy.spitter.api.dao.SpitterDao;
 import edu.plohoy.spitter.api.domain.Spitter;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-import sun.security.provider.ConfigFile;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-//@Repository("spitterDao")
-//@Transactional
+import java.util.List;
+
 public class JPASpitterDaoImpl implements SpitterDao {
     private static final String RECENT_SPITTLES =
             "SELECT s FROM Spittle s";
@@ -20,7 +16,6 @@ public class JPASpitterDaoImpl implements SpitterDao {
     private static final String SPITTLES_BY_USERNAME =
             "SELECT s FROM Spittle s WHERE s.spitter.username = :username";
 
-//    @PersistenceContext
     private EntityManager em;
 
     @Override
@@ -41,5 +36,10 @@ public class JPASpitterDaoImpl implements SpitterDao {
     @Override
     public void deleteSpitter(long id) {
         em.remove(id);
+    }
+
+    @Override
+    public List<Spitter> getAllSpitters() {
+        return null;
     }
 }

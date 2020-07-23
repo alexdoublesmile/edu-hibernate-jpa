@@ -10,3 +10,7 @@ CREATE TABLE spitter (
 );
 
 CREATE INDEX idx_user_id ON spitter(user_id);
+
+INSERT INTO spitter(user_name, user_password, user_full_name, user_mail)
+VALUES
+       ('First Spitty', 'password', 'Dr. Spitter The First', 'firstspit@gmail.com');

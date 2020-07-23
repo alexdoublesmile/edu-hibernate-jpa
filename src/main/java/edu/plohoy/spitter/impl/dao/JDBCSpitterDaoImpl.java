@@ -2,11 +2,12 @@ package edu.plohoy.spitter.impl.dao;
 
 import edu.plohoy.spitter.api.dao.SpitterDao;
 import edu.plohoy.spitter.api.domain.Spitter;
-import edu.plohoy.spitter.api.domain.Spittle;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JDBCSpitterDaoImpl implements SpitterDao {
     private JdbcTemplate jdbcTemplate;
@@ -35,6 +36,33 @@ public class JDBCSpitterDaoImpl implements SpitterDao {
         );
     }
 
+    @Override
+    public void updateSpitter(Spitter spitter, long id) {
+        jdbcTemplate.update(
+                SQL_UPDATE_SPITTER,
+                spitter.getUserName(),
+                spitter.getPassword(),
+                spitter.getFullName(),
+                id
+        );
+    }
+
+    @Override
+    public void deleteSpitter(long id) {
+        jdbcTemplate.update(
+                SQL_DELETE_SPITTER_BY_ID,
+                id
+        );
+    }
+
+    @Override
+    public List<Spitter> getAllSpitters() {
+        return jdbcTemplate.queryForObject(
+                SQL_SELECT_ALL_SPITTERS,
+                this::mapRowToSpitterList
+        );
+    }
+
     private Spitter mapRowToSpitter(ResultSet rs, int rowNum) throws SQLException {
         Spitter spitter = new Spitter();
         spitter.setId(rs.getLong("user_id"));
@@ -46,18 +74,12 @@ public class JDBCSpitterDaoImpl implements SpitterDao {
         return spitter;
     }
 
-    @Override
-    public void updateSpitter(Spitter spitter, long id) {
-        jdbcTemplate.update(
-                SQL_UPDATE_SPITTER,
-                spitter.getUserName(),
-                spitter.getPassword(),
-                spitter.getFullName(),
-                id);
-    }
-
-    @Override
-    public void deleteSpitter(long id) {
-        jdbcTemplate.update(SQL_DELETE_SPITTER_BY_ID, id);
+    private List<Spitter> mapRowToSpitterList(ResultSet rs, int rowNum) throws SQLException {
+        List<Spitter> spitters = new ArrayList<>();
+        spitters.add(mapRowToSpitter(rs, rowNum));
+        while (rs.next()) {
+            spitters.add(mapRowToSpitter(rs, rowNum));
+        }
+        return spitters;
     }
 }
